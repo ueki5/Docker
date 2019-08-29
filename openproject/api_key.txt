@@ -1,0 +1,24 @@
+API_KEY=8b61472ad3ccf78f384d489a3aeec1872d1078b0cd9a55170938f476bc9b0b23
+
+
+http://ueki5%40fujitsu.com:+0Bokaban@192.168.99.100:30080/api/v3/users/3/?notify=false&api_key=53d419217dc124eeed2690b8199ce76013f1ad86ace1372bf8dd9869f89621a1
+
+# ベーシック認証
+http://ueki5%40fujitsu.com:+0Bokaban@192.168.99.100:30080
+
+
+http://ueki5%40fujitsu.com:+0Bokaban@192.168.99.100:30080/api/v3/work_packages/42
+
+
+
+システム設定の「認証を有効にする」のチェックを外し、以下のリクエストをなげる
+
+http://192.168.99.100:30080/api/v3/users/3/?notify=false&apikey=53d419217dc124eeed2690b8199ce76013f1ad86ace1372bf8dd9869f89621a1
+
+
+http://apikey:53d419217dc124eeed2690b8199ce76013f1ad86ace1372bf8dd9869f89621a1@192.168.99.100:30080/api/v3/work_packages/42
+
+
+
+
+curl -u apikey:53d419217dc124eeed2690b8199ce76013f1ad86ace1372bf8dd9869f89621a1 https://community.openproject.com/api/v3/users/42

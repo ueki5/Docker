@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  openproject:
+    image: openproject/community:8
+    ports:
+      - "30080:80"
+    environment:
+      SECRET_KEY_BASE: secret
+    container_name:
+      openproject
+    restart: always
