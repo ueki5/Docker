@@ -3,7 +3,7 @@ version: '3'
 services:
 
   redmine:
-    image: redmine
+    image: redmine:4.0.4
     restart: always
     ports:
       - 30081:3000
@@ -15,7 +15,7 @@ services:
       redmine
 
   db:
-    image: postgres
+    image: postgres:11.5
     restart: always
     environment:
       POSTGRES_USER: redmine
