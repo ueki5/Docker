@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1'
 
 services:
 
@@ -6,18 +6,27 @@ services:
     image: redmine
     restart: always
     ports:
-      - 30081:3000
+      - 30080:3000
     environment:
-      REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: example
+      REDMINE_DB_POSTGRES: apm00-redmine-postgres
+      REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_PASSWORD: secret
     container_name:
-      redmine
+      apm00-redmine
+    volumes:
+      - apm00-redmine-files:/usr/src/redmine/files
+      - apm00-redmine-plugins:/usr/src/redmine/plugins
+      - apm00-redmine-vplugins:/usr/src/redmine/vendor/plugins
+      - apm00-redmine-themes:/usr/src/redmine/public/themes
 
   db:
-    image: mysql:5.7
+    image: postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine
+      POSTGRES_USER: redmine
+      POSTGRES_PASSWORD: secret
     container_name:
-      redmine-db
+      apm00-redmine-postgres
+    volumes:
+      - apm00-redmine-db:/var/lib/postgresql/data
+
