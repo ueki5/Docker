@@ -1,9 +1,21 @@
 version: '3.1'
 
+volumes:
+    apm00-redmine-db:
+        driver: local
+    apm00-redmine-files:
+        driver: local
+    apm00-redmine-plugins:
+        driver: local
+    apm00-redmine-vplugins:
+        driver: local
+    apm00-redmine-themes:
+        driver: local
+
 services:
 
   redmine:
-    image: redmine
+    image: redmine:4.1.0
     restart: always
     ports:
       - 30080:3000
@@ -20,7 +32,7 @@ services:
       - apm00-redmine-themes:/usr/src/redmine/public/themes
 
   db:
-    image: postgres
+    image: postgres:12.2
     restart: always
     environment:
       POSTGRES_USER: redmine
@@ -29,4 +41,5 @@ services:
       apm00-redmine-postgres
     volumes:
       - apm00-redmine-db:/var/lib/postgresql/data
+
 
