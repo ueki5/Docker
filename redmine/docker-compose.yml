@@ -34,6 +34,8 @@ services:
   db:
     image: postgres:12.2
     restart: always
+    ports:
+      - 35432:5432
     environment:
       POSTGRES_USER: redmine
       POSTGRES_PASSWORD: secret
@@ -41,5 +43,4 @@ services:
       apm00-redmine-postgres
     volumes:
       - apm00-redmine-db:/var/lib/postgresql/data
-
 
