@@ -25,20 +25,20 @@ services:
     image: sameersbn/postgresql:10-2
     volumes:
     - apm10-postgresql-data:/var/lib/postgresql:Z
+    container_name:
+      apm10-postgresql
     environment:
     - DB_USER=gitlab
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
     - DB_EXTENSION=pg_trgm
-    container_name:
-      apm10-postgresql
 
   gitlab:
     restart: always
     image: sameersbn/gitlab:12.7.6
     depends_on:
-    - apm10-redis
-    - apm10-postgresql
+    - redis
+    - postgresql
     ports:
     - "40080:80"
     - "40022:22"
