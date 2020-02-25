@@ -1,5 +1,10 @@
 version: '3.1'
 
+volumes:
+  apm10-redis-data:
+  apm10-postgresql-data:
+  apm10-gitlab-data:
+
 services:
   redis:
     restart: always
@@ -9,7 +14,9 @@ services:
     command:
     - --loglevel warning
     volumes:
-    - redis-data:/var/lib/redis:Z
+    - apm10-redis-data:/var/lib/redis:Z
+    container_name:
+      apm10-redis
 
   postgresql:
     restart: always
@@ -17,24 +24,28 @@ services:
     - "45432:5432"
     image: sameersbn/postgresql:10-2
     volumes:
-    - postgresql-data:/var/lib/postgresql:Z
+    - apm10-postgresql-data:/var/lib/postgresql:Z
     environment:
     - DB_USER=gitlab
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
     - DB_EXTENSION=pg_trgm
+    container_name:
+      apm10-postgresql
 
   gitlab:
     restart: always
     image: sameersbn/gitlab:12.7.6
     depends_on:
-    - redis
-    - postgresql
+    - apm10-redis
+    - apm10-postgresql
     ports:
     - "40080:80"
     - "40022:22"
     volumes:
-    - gitlab-data:/home/git/data:Z
+    - apm10-gitlab-data:/home/git/data:Z
+    container_name:
+      apm10-gitlab
     environment:
     - DEBUG=false
 
@@ -154,8 +165,3 @@ services:
     - OAUTH_AZURE_API_KEY=
     - OAUTH_AZURE_API_SECRET=
     - OAUTH_AZURE_TENANT_ID=
-
-volumes:
-  redis-data:
-  postgresql-data:
-  gitlab-data:
