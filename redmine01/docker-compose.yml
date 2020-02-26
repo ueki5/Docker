@@ -1,0 +1,46 @@
+version: '3.1'
+
+volumes:
+    apm01-redmine-db:
+        driver: local
+    apm01-redmine-files:
+        driver: local
+    apm01-redmine-plugins:
+        driver: local
+    apm01-redmine-vplugins:
+        driver: local
+    apm01-redmine-themes:
+        driver: local
+
+services:
+
+  redmine:
+    image: redmine:4.1.0
+    restart: always
+    ports:
+      - 31080:3000
+    environment:
+      REDMINE_DB_POSTGRES: apm01-redmine-postgres
+      REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_PASSWORD: secret
+    container_name:
+      apm01-redmine
+    volumes:
+      - apm01-redmine-files:/usr/src/redmine/files
+      - apm01-redmine-plugins:/usr/src/redmine/plugins
+      - apm01-redmine-vplugins:/usr/src/redmine/vendor/plugins
+      - apm01-redmine-themes:/usr/src/redmine/public/themes
+
+  db:
+    image: postgres:12.2
+    restart: always
+    ports:
+      - 36432:5432
+    environment:
+      POSTGRES_USER: redmine
+      POSTGRES_PASSWORD: secret
+    container_name:
+      apm01-redmine-postgres
+    volumes:
+      - apm01-redmine-db:/var/lib/postgresql/data
+
