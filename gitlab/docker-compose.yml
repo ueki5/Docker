@@ -17,11 +17,6 @@ services:
       apm00-redis
     volumes:
     - apm10-redis-data:/var/lib/redis:Z
-<<<<<<< HEAD
-=======
-    container_name:
-      apm10-redis
->>>>>>> 976682d6d65fb17048129de7b2ba744a9f4f7052
 
   postgresql:
     restart: always
@@ -32,11 +27,6 @@ services:
       apm00-postgresql
     volumes:
     - apm10-postgresql-data:/var/lib/postgresql:Z
-<<<<<<< HEAD
-=======
-    container_name:
-      apm10-postgresql
->>>>>>> 976682d6d65fb17048129de7b2ba744a9f4f7052
     environment:
     - DB_USER=gitlab
     - DB_PASS=password
@@ -56,11 +46,6 @@ services:
       apm00-gitlab
     volumes:
     - apm10-gitlab-data:/home/git/data:Z
-<<<<<<< HEAD
-=======
-    container_name:
-      apm10-gitlab
->>>>>>> 976682d6d65fb17048129de7b2ba744a9f4f7052
     environment:
     - DEBUG=false
 
