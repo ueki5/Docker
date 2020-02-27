@@ -68,8 +68,8 @@ services:
     - SSL_SELF_SIGNED=false
 
     - GITLAB_HOST=localhost
-    - GITLAB_PORT=40080
-    - GITLAB_SSH_PORT=40022
+    - GITLAB_PORT=41080
+    - GITLAB_SSH_PORT=41022
     - GITLAB_RELATIVE_URL_ROOT=
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
@@ -104,6 +104,17 @@ services:
     - IMAP_PASS=password
     - IMAP_SSL=true
     - IMAP_STARTTLS=false
+
+    - LDAP_ENABLED=true
+    - LDAP_HOST=10.128.194.212
+    - LDAP_PORT=389
+    - LDAP_UID=sAMAccountName
+    - LDAP_METHOD=plain
+    - LDAP_BIND_DN=CN=ueki5,OU=第二システム部_002826,OU=流通ＡＰＭセンター_004408,OU=第二流通システム事業本部_009393,OU=富士通株式会社_0001,OU=OU Organization,DC=g01,DC=fujitsu,DC=local
+    - LDAP_PASS=+4Bokaban
+    - LDAP_ACTIVE_DIRECTORY=true
+    - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=false
+    - LDAP_BASE=DC=g01,DC=fujitsu,DC=local
 
     - OAUTH_ENABLED=false
     - OAUTH_AUTO_SIGN_IN_WITH_PROVIDER=
