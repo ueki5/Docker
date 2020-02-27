@@ -4,6 +4,7 @@ volumes:
   apm10-redis-data:
   apm10-postgresql-data:
   apm10-gitlab-data:
+  apm10-gitlab-cnfg:
 
 services:
   redis:
@@ -46,6 +47,7 @@ services:
       apm00-gitlab
     volumes:
     - apm10-gitlab-data:/home/git/data:Z
+    - apm10-gitlab-cnfg:/home/git/gitlab/config:Z
     environment:
     - DEBUG=false
 
