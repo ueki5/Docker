@@ -15,7 +15,7 @@ services:
     command:
     - --loglevel warning
     container_name:
-      apm00-redis
+      apm11-redis
     volumes:
     - apm11-redis-data:/var/lib/redis:Z
 
@@ -25,7 +25,7 @@ services:
     - "46432:5432"
     image: sameersbn/postgresql:10-2
     container_name:
-      apm00-postgresql
+      apm11-postgresql
     volumes:
     - apm11-postgresql-data:/var/lib/postgresql:Z
     environment:
@@ -44,7 +44,7 @@ services:
     - "41080:80"
     - "41022:22"
     container_name:
-      apm00-gitlab
+      apm11-gitlab
     volumes:
     - apm11-gitlab-data:/home/git/data:Z
     - apm11-gitlab-cnfg:/home/git/gitlab/config:Z
